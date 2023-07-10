@@ -1,5 +1,5 @@
 import boto3
-import botocore
+import botocore.exceptions
 import os
 
 os.environ['AWS_PROFILE'] = 'projects' # Pass AWS profile credentials at ~/.aws/credentials
