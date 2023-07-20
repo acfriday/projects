@@ -1,6 +1,7 @@
 import os
 import boto3
 import flask
+from botocore.exceptions import ClientError
 from flask import request, jsonify
 
 
@@ -9,35 +10,43 @@ os.environ['AWS_Profile'] = 'projects'
 app = flask.Flask(__name__)
 app.config['DEBUG'] = True
 
-
 dynamodb = boto3.resource('dynamodb')
 table_name = 'BBallTable'
 table = dynamodb.Table(table_name)
 
-if table == False:
+def create_table_if_not_exists():
+    try:
+        table.load()
+        print('Table exists.')
+    except ClientError as e:
+        if e.response['Error']['Code'] == 'ResourceNotFoundException':
+            print('No current table exists, creating new table')
 
-    table = dynamodb.create_table(
-        TableName = table_name,
-        KeySchema = [
+            table = dynamodb.create_table(
+            TableName = table_name,
+            KeySchema = [
+                {
+                    'AttributeName': 'id',
+                    'KeyType': 'HASH'
+                }   
+            ],
+            AttributeDefinitions = [
+                {
+                    'AttributeName': 'id',
+                    'AttributeType': 'S'
+                }
+            ],
+            ProvisionedThroughput = 
             {
-                'AttributeName': 'id',
-                'KeyType': 'HASH'
-            }   
-        ],
-        AttributeDefinitions = [
-            {
-                'AttributeName': 'id',
-                'AttributeType': 'S'
+                'ReadCapacityUnits': 5,
+                'WriteCapacityUnits': 5
             }
-        ],
-        ProvisionedThroughput = 
-        {
-            'ReadCapacityUnits': 5,
-            'WriteCapacityUnits': 5
-        }
-    )
-    table.meta.client.get_waiter('table_exists').wait(TableName = table_name)
-
+        )
+        table.meta.client.get_waiter('table_exists').wait(TableName = table_name)
+        print('Table created successfully.')
+    
+    else:
+        print('Failure: ', e)
 
 
 @app.route('/', methods=['GET'])
