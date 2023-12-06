@@ -2,15 +2,13 @@ ENV["VAGRANT_DEFAULT_PROVIDER"] = "docker"
 
 Vagrant.configure("2") do |config|
 
-  config.vm.define "nginx" do
+  config.vm.define "nginx" do |docker|
   config.vm.hostname = "dockerweb01"
-  config.vm.post_up_message = "Access via localhost/"
   end
 
   config.vm.provider "docker" do |docker|
     docker.image="nginx:stable"
-    docker.ports=["80:8080"]
+    docker.ports=["80:80"]
     docker.volumes=["#{Dir.pwd}/src:/usr/share/nginx/html"]
-
   end
 end
