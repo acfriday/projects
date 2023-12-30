@@ -1,9 +1,9 @@
 FROM ubuntu:20.04
-ENV ANSIBLE_VERSION 2.9.17
-RUN apt-get update; \
-    apt-get install -y gcc python3; \
-    apt-get install -y python3-pip; \
-    apt-get clean all
-RUN pip3 install --upgrade pip; \
-    pip3 install "ansible==${ANSIBLE_VERSION}"; \
-    pip3 install ansible
+RUN apt-get -y update && apt-get -y install \
+	ansible \
+	vim \
+	openssh-client
+
+COPY inventory.ini .
+COPY ansible.cfg .
+RUN ssh-keygen -t ed25519 -N "" -C "ansible" -f ~/.ssh/ansible
