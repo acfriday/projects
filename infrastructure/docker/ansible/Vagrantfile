@@ -1,0 +1,25 @@
+ENV["VAGRANT_DEFAULT_PROVIDER"] = "virtualbox"
+Vagrant.configure("2") do |config|
+
+  ## IMAGE ##
+  config.ssh.insert_key = false
+  config.vm.define "web01" do |web01|
+    web01.vm.box = "geerlingguy/ubuntu1804"
+    web01.vm.network "private_network", ip: "192.168.33.10"
+  ## Provider Config ##
+    web01.vm.provider "virtualbox" do |vb|
+      vb.memory = "1024"
+      vb.cpus = "2"
+  end
+end
+  ## IMAGE ##
+  config.vm.define "db01" do |db01|
+    db01.vm.box = "geerlingguy/ubuntu1804"
+    db01.vm.network "private_network", ip: "192.168.33.11"
+  ## Provider Config ##
+    db01.vm.provider "virtualbox" do |vb|
+      vb.memory = "1024"
+      vb.cpus = "2"
+    end
+  end
+end
