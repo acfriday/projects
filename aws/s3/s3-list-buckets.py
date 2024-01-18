@@ -1,14 +1,14 @@
 import boto3
 from botocore.exceptions import ClientError
 
-service = "s3"
-region = "us-east-1"
-profile = "projects"
+aws_service = "s3"
+aws_region = "us-east-1"
+aws_profile = "projects"
 
-boto3 = boto3.session.Session(profile_name=profile)
+boto3 = boto3.session.Session(profile_name=aws_profile)
 def ListBucket():
     try:
-        s3 = boto3.client(service_name=service,region_name=region)
+        s3 = boto3.client(service_name=aws_service ,region_name=aws_region)
         response = s3.list_buckets()
         if not response:
              print("No buckets available to this user")
