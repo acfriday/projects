@@ -75,8 +75,8 @@ Category_IV_Languages = [
 # Root dir
 @app.route('/')
 def root():
-    return "The following language learning timelines based on what the US Foreign Service Institute has observed\
-        as the average length of time for a student to achieve “General Professional Proficiency” in a forgiegn language"
+    return "The following language learning timelines are based on what the US Foreign Service Institute has observed\
+        as the average length of time for a student to achieve “General Professional Proficiency” in a forgeign language."
 
 # Category I Languages dir
 @app.get('/category-I-languages')
