@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 app = Flask(__name__)
 
 Category_I_Languages = [
@@ -75,8 +75,9 @@ Category_IV_Languages = [
 # Root dir
 @app.route('/')
 def root():
-    return "The following language learning timelines are based on what the US Foreign Service Institute has observed\
-        as the average length of time for a student to achieve “General Professional Proficiency” in a forgeign language."
+    return render_template('index.html', Category_I_Languages=Category_I_Languages)
+    """return "The following language learning timelines are based on what the US Foreign Service Institute has observed\
+        as the average length of time for a student to achieve “General Professional Proficiency” in a forgeign language." """
 
 # Category I Languages dir
 @app.get('/category-I-languages')
