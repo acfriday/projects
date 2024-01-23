@@ -6,7 +6,6 @@ url_mappings = {}
 
 @app.post('/shorten')
 def shorten_url():
-    global next_url_path
     long_url = request.json["url"]
     shortener = pyshorteners.Shortener()
     short_url = shortener.tinyurl.short(long_url)
