@@ -62,7 +62,6 @@ Category_III_Languages = [
     {'id': '42', 'name': 'Uzbek'},
     {'id': '43', 'name': 'Vietnamese'},
 ]
-
 Category_IV_Languages = [
     {'id': '1', 'name': 'Arabic'},
     {'id': '2', 'name': 'Japanese'},
@@ -71,65 +70,14 @@ Category_IV_Languages = [
     {'id': '5', 'name': 'Chinese-Mandarin'},
     {'id': '6', 'name': 'Japanese'},
 ]
-
 # Root dir
 @app.route('/')
 def root():
-    return render_template('index.html')
-    """return "The following language learning timelines are based on what the US Foreign Service Institute has observed\
-        as the average length of time for a student to achieve “General Professional Proficiency” in a forgeign language." """
-
-# Category I Languages dir
-@app.get('/category-I-languages')
-def category_I_languages():
-    return f" Category I languages: 24-30 weeks (600-750 class hours) {Category_I_Languages}"
-
-# GET method for Category I Languages
-@app.get('/category-I-languages/<id>')
-def list_category_I_languages(id):
-    for language in Category_I_Languages:
-        if language['id'] == id:
-            return language
-    return "There's no language stored at this index"
-
-# Category II Languages dir
-@app.get('/category-II-languages')
-def category_II_languages():
-    return f" Category II languages: Approximately 36 weeks (900 class hours) {Category_II_Languages}"
-
-# GET method for Category II Languages
-@app.get('/category-II-languages/<id>')
-def list_category_II_languages(id):
-    for language in Category_II_Languages:
-        if language['id'] == id:
-            return language
-    return "There's no language stored at this index"
-
-# Category III Languages dir
-@app.get('/category-III-languages')
-def category_III_languages():
-    return f" Category III languages: 44 weeks (1100 class hours) {Category_III_Languages}"
-
-# GET method for Category III Languages
-@app.get('/category-III-languages/<id>')
-def list_category_III_languages(id):
-    for language in Category_III_Languages:
-        if language['id'] == id:
-            return language
-    return "There's no language stored at this index"
-
-# Category IV Languages dir
-@app.get('/category-IV-languages')
-def category_IV_languages():
-    return f" Category IV languages: 88 weeks (2200 class hours) {Category_IV_Languages}"
-
-# GET method for Category IV Languages
-@app.get('/category-IV-languages/<id>')
-def list_category_IV_languages(id):
-    for language in Category_IV_Languages:
-        if language['id'] == id:
-            return language
-    return "There's no language stored at this index"
-
+    return render_template('index.html',
+                           cat_I=Category_I_Languages,
+                           cat_II=Category_II_Languages,
+                           cat_III=Category_III_Languages,
+                           cat_IV=Category_IV_Languages,
+                           )
 if __name__ == '__main__':
     app.run(debug=True)
