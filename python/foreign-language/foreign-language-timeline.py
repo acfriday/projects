@@ -2,7 +2,7 @@ from flask import Flask, request, render_template
 app = Flask(__name__)
 
 Category_I_Languages = [
-    {'id': '1', 'name': 'Danish', 'timeline': '24 weeks'},
+    {'id': '1', 'name': 'Danish'},
     {'id': '2', 'name': 'Italian'},
     {'id': '3', 'name': 'Dutch'},
     {'id': '4', 'name': 'Norwegian'},
@@ -70,14 +70,15 @@ Category_IV_Languages = [
     {'id': '5', 'name': 'Chinese-Mandarin'},
     {'id': '6', 'name': 'Japanese'},
 ]
-# Root dir
+# Route to Root directory
 @app.route('/')
 def root():
+    # Pass the dictionaries defined above into HTML fields.
     return render_template('index.html',
-                           cat_I=Category_I_Languages,
-                           cat_II=Category_II_Languages,
-                           cat_III=Category_III_Languages,
-                           cat_IV=Category_IV_Languages,
+                           category_I_languages=Category_I_Languages,
+                           category_II_languages=Category_II_Languages,
+                           category_III_languages=Category_III_Languages,
+                           category_IV_languages=Category_IV_Languages,
                            )
 if __name__ == '__main__':
     app.run(debug=True)

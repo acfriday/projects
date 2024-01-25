@@ -9,16 +9,22 @@
             h1 {
                 font-size: 30px;
                 font-weight: normal;
-                font-family: Georgia, 'Times New Roman', Times, serif;
+                font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                font-style: italic;
             }
             h2{
                 font-size: 30px;
-                font-family: Georgia, 'Times New Roman', Times, serif;
+                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
             }
             h3{
                 font-size: 25px;
                 font-weight: normal;
-                font-family: Georgia, 'Times New Roman', Times, serif;
+                font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            }
+            b{
+                font-size: 25px;
+                font-weight: bold;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             }
             #banner {
                 height: 360px;
@@ -34,34 +40,33 @@
             as the average length of time for a student to achieve “General Professional Proficiency” in a forgeign language.</h1>
         <h2 style="margin-top: 32px;">Category I Languages: 24-30 weeks (600-750 class hours) </h2>
         <div>
-            {% for language in cat_I %}
+            {% for language in category_I_languages %}
              <div style="margin-top: 16px;">
                 <h3><b>Language: </b>{{language['name']}}</h3>
-                <h3><b>Timeline: </b> {{language['timeline']}}</h3>
             </div>
             {% endfor %}
         </div>
         <h2 style="margin-top: 32px;">Category II languages: Approximately 36 weeks (900 class hours)</h2>
         <div>
-            {% for language in cat_II %}
+            {% for language in category_II_languages %}
              <div>
-                <h3>{{language['name']}}</h3>
+                <h3><b>Language: </b>{{language['name']}}</h3>
             </div>
             {% endfor %}
         </div>
         <h2 style="margin-top: 32px;">Category III Languages: 44 weeks (1100 class hours) </h2>
         <div>
-            {% for language in cat_III %}
+            {% for language in category_III_languages %}
              <div>
-                <h3>{{language['name']}}</h3>
+                <h3><b>Language: </b>{{language['name']}}</h3>
             </div>
             {% endfor %}
         </div>
         <h2 style="margin-top: 32px;">Category IV Languages: 88 weeks (2200 class hours) </h2>
         <div>
-            {% for language in cat_IV %}
+            {% for language in category_IV_languages %}
              <div>
-                <h3>{{language['name']}}</h3>
+                <h3><b>Language: </b>{{language['name']}}</h3>
             </div>
             {% endfor %}
         </div>
